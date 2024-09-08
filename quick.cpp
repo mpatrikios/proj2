@@ -7,20 +7,37 @@
 // Prototypes
 
 Node *qsort(Node *head, bool numeric);
-void  partition(Node *head, Node *pivot, Node *&left, Node *&right, bool numeric);
+void partition(Node *head, Node *pivot, Node *&left, Node *&right, bool numeric);
 Node *concatenate(Node *left, Node *right);
 
 // Implementations
 
 void quick_sort(List &l, bool numeric) {
+
+
 }
 
 Node *qsort(Node *head, bool numeric) {
+
+// base case
+
 }
 
 void partition(Node *head, Node *pivot, Node *&left, Node *&right, bool numeric) {
+
 }
 
 Node *concatenate(Node *left, Node *right) {
+
+    while(left->next != nullptr) {
+        left = left->next;
+    }
+    while(right != nullptr) {
+        left->next = right;
+        right = right->next;
+        left = left->next;
+    }
+
+    return left;
 }
 
