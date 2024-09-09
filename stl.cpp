@@ -18,17 +18,20 @@ void stl_sort(List &l, bool numeric) {
         current = current->next;
     }
 
-    if (numeric) { //sort based on number
+
+    if (numeric == true) { //sort based on number
         sort(nodeVector.begin(), nodeVector.end(), node_number_compare);
     } else { //sort based on string
         sort(nodeVector.begin(), nodeVector.end(), node_string_compare);
     }
 
-    l.head = nodeVector[0]; //set the head of the list to the first node in the vector
 
     for (size_t i = 0; i < nodeVector.size() - 1; i++) { //relink the nodes
         nodeVector[i]->next = nodeVector[i + 1];
     }
+
+    l.head = nodeVector[0]; //set the head of the list to the first node in the vector
+    nodeVector[nodeVector.size() - 1]->next = nullptr; //set the last node to nullptr
 
 }
 
