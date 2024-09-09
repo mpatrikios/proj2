@@ -24,6 +24,10 @@ void quick_sort(List &l, bool numeric) {
 Node *qsort(Node *head, bool numeric) {
 
     // base case
+    if(head == nullptr || head->next == nullptr) {
+        return head;
+    }
+
     // if list is empty or only has one element left
     if (head == nullptr || head->next == nullptr) {
 
@@ -121,20 +125,61 @@ void partition(Node *head, Node *pivot, Node *&left, Node *&right, bool numeric)
 // returns the head of the concatenated list
 Node *concatenate(Node *left, Node *right) {
 
-    while(left->next != nullptr) {
+    if (left == nullptr) return right;  // If the left list is empty
+    if (right == nullptr) return left;  // If the right list is empty
 
+    Node* head = left;  //head of list
+    while (left->next != nullptr) {  // go to the end of the left list
         left = left->next;
-
     }
 
-    while(right != nullptr) {
+    left->next = right;  // add right list to the end of the left list
 
-        left->next = right;
-        right = right->next;
-        left = left->next;
-
-    }
-
-    return left;
+    return head;  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
