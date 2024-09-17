@@ -44,7 +44,7 @@ void qsort_sort(List &l, bool numeric)
         array[i]->next = array[i + 1];
     }
 
-    l.head = array[0];                    // set the head of the list to the first node in the vector
+    l.head = array[0];                    // set the head of the list to the first node in the array
     array[arraySize - 1]->next = nullptr; // set the last node to nullptr
     delete[] array;
 }
