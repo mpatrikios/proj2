@@ -11,7 +11,7 @@ using namespace std;
 
 void qsort_sort(List &l, bool numeric)
 {
-    vector<Node *> nodeVector; // use a container that works with qsort
+    vector<Node *> nodeVector;
 
     Node *current = l.head;
 
@@ -23,6 +23,7 @@ void qsort_sort(List &l, bool numeric)
 
     int arraySize = nodeVector.size();
 
+    // Add all nodes to an array as that will work with qsort
     Node **array = new Node *[arraySize];
     for (int i = 0; i < arraySize; i++)
     {

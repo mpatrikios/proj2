@@ -4,13 +4,11 @@
 
 #include <iostream>
 
-// Prototypes
-
 Node *msort(Node *head, bool numeric);
 void split(Node *head, Node *&left, Node *&right);
 Node *merge(Node *left, Node *right, bool numeric);
 
-// Implementations
+// This function compares 2 nodes and takes in numeric as to know how to compare the 2 nodes
 bool compareNodes(Node *left, Node *right, bool numeric)
 {
     if (numeric)
@@ -25,22 +23,27 @@ bool compareNodes(Node *left, Node *right, bool numeric)
 
 void merge_sort(List &l, bool numeric)
 {
-    l.head = msort(l.head, numeric);
+    l.head = msort(l.head, numeric); // Call recursive function on list
 }
 
 Node *msort(Node *head, bool numeric)
 {
+    // Base case
     if (head == nullptr || head->next == nullptr)
     {
         return head;
     }
 
+    // Pointers for left and right sublist are modified inside split
     Node *leftptr = head;
     Node *rightptr = head;
     split(head, leftptr, rightptr);
 
+    // Call recursive function on the 2 sublists
     Node *leftHead = msort(leftptr, numeric);
     Node *rightHead = msort(rightptr, numeric);
+
+    // Merge 2 sublists
     head = merge(leftHead, rightHead, numeric);
 
     return head;
@@ -48,21 +51,7 @@ Node *msort(Node *head, bool numeric)
 
 void split(Node *head, Node *&left, Node *&right)
 {
-    /*Node *beforeSlow = nullptr;
-    Node *slow = head;
-    Node *fast = head;
-    while (fast != nullptr && fast->next != nullptr)
-    {
-        beforeSlow = slow;
-        slow = slow->next;
-        fast = fast->next;
-        fast = fast->next;
-    }
-
-    right = slow;
-    beforeSlow->next = nullptr;
-    */
-
+    // If list is 1 or less no need to split
     if (head == nullptr || head->next == nullptr)
     {
         left = head;
@@ -70,6 +59,7 @@ void split(Node *head, Node *&left, Node *&right)
         return;
     }
 
+    // Slow fast ptr trick
     Node *slow = head;
     Node *fast = head->next;
 
@@ -79,14 +69,17 @@ void split(Node *head, Node *&left, Node *&right)
         fast = fast->next->next;
     }
 
+    // Set right ptr to beginning of right sublist, and the element before to the end of the left sublist
     right = slow->next;
     slow->next = nullptr;
 }
 
 Node *merge(Node *left, Node *right, bool numeric)
 {
+    // Set first node to return
     Node *firstNode;
     Node *currentNode;
+    // Select first node
     if (compareNodes(left, right, numeric))
     {
         firstNode = left;
@@ -99,6 +92,8 @@ Node *merge(Node *left, Node *right, bool numeric)
     }
 
     currentNode = firstNode;
+
+    // Iterate through rest of sublists
     while (left != nullptr && right != nullptr)
     {
         if (compareNodes(left, right, numeric))
@@ -114,6 +109,7 @@ Node *merge(Node *left, Node *right, bool numeric)
         currentNode = currentNode->next;
     }
 
+    // Add the remaining list to the end
     if (left == nullptr)
     {
         currentNode->next = right;
