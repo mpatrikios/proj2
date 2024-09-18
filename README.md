@@ -1,3 +1,7 @@
+Names: Mia Patrikios and Wyatt Knepp
+GitHub Link: https://github.com/mpatrikios/proj2-wyatt-mia
+
+
 Discuss the relative performance of each sorting method and try to explain the differences.
 
 
