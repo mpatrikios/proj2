@@ -35,8 +35,8 @@ int qnode_number_compare(const void *a, const void *b)
     const Node *nodeB = *(const Node **)b;
 
     if (nodeA->number < nodeB->number)
-        return 1;
-    return 0;
+        return 0;
+    return 1;
 }
 
 // compares string field
